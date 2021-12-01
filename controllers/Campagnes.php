@@ -70,6 +70,18 @@ class Campagnes extends Controller
         $modelId = $this->params[0];
     }
 
+    public function onLaunchCron() {
+        try {
+            $job = new \Waka\Programer\Jobs\SendCampagne(['productorId' => $this->params[0]]);
+            $jobManager = \App::make('Waka\Wakajob\Classes\JobManager');
+            $jobManager->dispatch($job, "Envoi d'une campagne");
+            $this->vars['jobId'] = $job->jobId;
+        } catch (Exception $ex) {
+                $this->controller->handleError($ex);
+        }
+        return $this->makePartial('$/waka/wakajob/controllers/jobs/_confirm_popup.htm');
+    }
+
     //endKeep/
 }
 

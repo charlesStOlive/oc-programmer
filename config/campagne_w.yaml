@@ -90,6 +90,8 @@ campagne:
                 label: waka.programer::campagne_w.trans.pret_to_encours 
                 rulesSet: ready
                 fncs:
+                    launchProgramTask:
+                        type: prod
                     send:
                         type: trait
             from: pret

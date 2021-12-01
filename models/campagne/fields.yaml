@@ -17,6 +17,15 @@ tabs:
         waka.programer::camapgne.tab_options: 
         waka.programer::camapgne.tab_edit: 
     fields:    
+        replyTo:
+            label: waka.programer::campagne.replyTo
+            span: right
+            trigger:
+                action: show
+                field: has_sender
+                condition: checked
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_options
         rule_asks:
             span: full
             type: askbuilder
@@ -161,6 +170,71 @@ tabs:
                 condition: checked
             permissions: [waka.programer.campagne.admin.super]
             tab: waka.programer::campagne.tab_advanced_edit
+        use_key:
+            label: waka.programer::campagne.use_key
+            span: auto
+            type: switch
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_options
+        key_duration:
+            label: waka.programer::campagne.key_duration
+            span: auto
+            type: dropdown
+            placeholder: waka.utils::lang.global.placeholder
+            options: listDurations
+            trigger:
+                action: show
+                field: use_key
+                condition: checked
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_options
+        has_log:
+            label: waka.programer::campagne.has_log
+            span: left
+            type: switch
+            default: true
+            comment: waka.programer::campagne.has_log_com
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_options
+        open_log:
+            label: waka.programer::campagne.open_log
+            span: left
+            type: switch
+            trigger:
+                action: show
+                field: has_log
+                condition: checked
+            default: false
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_options
+        click_log:
+            label: waka.programer::campagne.click_log
+            span: right
+            type: switch
+            trigger:
+                action: show
+                field: has_log
+                condition: checked
+            default: false
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_options
+        has_sender:
+            label: waka.programer::campagne.has_sender
+            span: full
+            type: switch
+            default: false
+            comment: waka.programer::campagne.has_sender_com
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_options
+        sender:
+            label: waka.programer::campagne.sender
+            span: left
+            trigger:
+                action: show
+                field: has_sender
+                condition: checked
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_options
 secondaryTabs:
     fields:
         # info:

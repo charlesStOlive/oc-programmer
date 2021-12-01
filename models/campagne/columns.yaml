@@ -21,6 +21,11 @@ columns:
     nb_use:
         label: waka.programer::campagne.nb_use
         searchable: true
+    has_log:
+        label: waka.programer::campagne.has_log
+        type: switch
+        searchable: false
+        sortable: true
     is_mjml:
         label: waka.programer::campagne.is_mjml
         type: switch

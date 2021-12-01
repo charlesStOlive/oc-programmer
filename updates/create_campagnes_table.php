@@ -32,6 +32,16 @@ class CreateCampagnesTable extends Migration
             $table->string('slug');
             $table->integer('layout_id')->unsigned()->nullable();
             $table->integer('waka_mail_id')->unsigned();
+            $table->boolean('use_key')->nullable();
+            $table->string('key_duration')->nullable();
+            $table->boolean('has_log')->nullable()->default(true);
+            $table->boolean('open_log')->nullable()->default(false);
+            $table->boolean('click_log')->nullable()->default(false);
+            $table->boolean('has_sender')->nullable()->default(false);
+            $table->string('sender')->nullable();
+            $table->string('reply_to')->nullable();
+            $table->integer('nb_use')->nullable();
+            $table->text('versions')->nullable();
             $table->timestamps();
         });
     }

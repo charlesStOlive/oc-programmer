@@ -80,6 +80,14 @@ class CampagnesImport implements ToCollection, WithHeadingRow, WithCalculatedFor
 //             $campagne->name = $row['name'] ?? null;
 //             $campagne->slug = $row['slug'] ?? null;
 //             $campagne->wakaMail_id = $row['wakaMail_id'] ?? null;
+//             $campagne->use_key = $row['use_key'] ?? null;
+//             $campagne->key_duration = $row['key_duration'] ?? null;
+//             $campagne->has_log = $row['has_log'] ?? null;
+//             $campagne->open_log = $row['open_log'] ?? null;
+//             $campagne->click_log = $row['click_log'] ?? null;
+//             $campagne->has_sender = $row['has_sender'] ?? null;
+//             $campagne->sender = $row['sender'] ?? null;
+//             $campagne->replyTo = $row['replyTo'] ?? null;
 //             $campagne->nb_use = $row['nb_use'] ?? null;
 //             $campagne->nb_targets = $row['nb_targets'] ?? null;
 //             $campagne->save();

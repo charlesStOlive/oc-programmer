@@ -93,7 +93,9 @@ class WorkflowCampagneListener extends WorkflowListener
 
     public function send($event, $args = null)
     {
-        //trace_log('envoyer la campagne');
+        trace_log('envoyer la campagne');
+        $model = $event->getSubject();
+        $model->launch();
         
     }
 

@@ -58,6 +58,7 @@ class Campagne extends Model
         'nb_targets_eligible',
     ];
 
+
     /**
      * @var array Attributes to be cast to native types
      */
@@ -123,6 +124,11 @@ class Campagne extends Model
             'name' => 'fnceable',
             'delete' => true
         ],
+        'sends' => [
+            'Waka\Lp\Models\SourceLog',
+            'name' => 'sendeable',
+            'delete' => true
+        ],
     ];
     public $attachOne = [
     ];
@@ -150,6 +156,10 @@ class Campagne extends Model
     /**
      * LISTS
      **/
+    public function listDurations() {
+        return \Config::get('waka.lp::durations');
+    }
+    //
     public function listActiveWakaMail() {
         if($this->ds_create) {
             return \Waka\Mailer\Models\WakaMail::active()->where('data_source', $this->ds_create)->where('is_campagner', true)->lists('name', 'id');
@@ -306,6 +316,9 @@ class Campagne extends Model
             return 'Attente config';
         }
     }
+    public function getEligibles() {
+        return  $this->getFinalQuery()->eligibleEmail();
+    }
 
     /**
      * SCOPES
@@ -400,6 +413,8 @@ class Campagne extends Model
         $this->pjs = $originalMail->pjs;
         $this->is_scope = $originalMail->is_scope;
         $this->scopes = $originalMail->scopes;
+        $this->use_key = $originalMail->use_key;
+        $this->key_duration = $originalMail->key_duration;
     }
     
     public function syncRelations() {
