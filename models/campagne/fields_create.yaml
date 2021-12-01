@@ -1,0 +1,33 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    ds_create:
+        label: waka.programer::campagne.ds_create
+        span: left
+        type: dropdown
+        placeholder: waka.utils::lang.global.placeholder
+        options: listCampagneDataSource
+        permissions: [waka.programer.campagne.*]
+    wakaMail:
+        label: waka.programer::campagne.wakaMail
+        span: left
+        type: dropdown
+        placeholder: waka.utils::lang.global.placeholder
+        required: true
+        dependsOn: ds_create
+        options: listActiveWakaMail
+        permissions: [waka.programer.campagne.*]
+    name:
+        label: waka.programer::campagne.name
+        span: left
+        required: true
+        dependsOn: wakaMail
+        permissions: [waka.programer.campagne.*]
+    slug:
+        label: waka.programer::campagne.slug
+        span: right
+        required: true
+        dependsOn: wakaMail
+        permissions: [waka.programer.campagne.*]

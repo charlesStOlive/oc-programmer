@@ -1,0 +1,32 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: waka.programer::campagne.form_name
+
+# Model Form Field configuration
+form: $/waka/programer/models/campagne/fields.yaml
+
+# Model Class name
+modelClass: Waka\Programer\Models\Campagne
+
+# Default redirect location
+defaultRedirect: waka/programer/campagnes
+
+# Create page
+create:
+    title: waka.programer::campagne.create
+    redirect: waka/programer/campagnes/update/:id
+    redirectClose: waka/programer/campagnes
+    form: $/waka/programer/models/campagne/fields_create.yaml
+
+# Update page
+update:
+    title: waka.programer::campagne.update
+    redirect: waka/programer/campagnes/update/:id
+    redirectClose: waka/programer/campagnes
+
+# Preview page
+preview:
+    title: waka.programer::campagne.preview_name

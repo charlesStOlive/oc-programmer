@@ -1,0 +1,31 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    state:
+        label: waka.programer::campagne.state
+        type: workflow
+        searchable: true
+    has_programmation:
+        label: waka.programer::campagne.has_programmation
+        searchable: true
+    name:
+        label: waka.programer::campagne.name
+        searchable: true
+    wakaMail_r:
+        label: waka.programer::campagne.wakaMail
+        relation: wakaMail
+        select: name
+        searchable: true
+    nb_use:
+        label: waka.programer::campagne.nb_use
+        searchable: true
+    is_mjml:
+        label: waka.programer::campagne.is_mjml
+        type: switch
+        searchable: false
+        sortable: true
+    updated_at:
+        label: waka.utils::lang.global.updated_at
+        type: timetense

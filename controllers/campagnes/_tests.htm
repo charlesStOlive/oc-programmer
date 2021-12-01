@@ -1,0 +1,28 @@
+<div class="dropdown dropup">
+    <a href="#"
+       data-toggle="dropdown"
+       class="btn btn-secondary oc-icon-eye"><?= e(trans('waka.programer::campagne.btn_tests')) ?>
+    </a>
+    <ul class="dropdown-menu"
+        role="menu"
+        data-dropdown-title="<?= e(trans('waka.programer::campagne.test')) ?>">
+        <li role="presentation">
+            <a href="javascript:;"
+               role="menuitem"
+               tabindex="-1"
+               data-control="popup"
+               data-handler="onLoadCampagneTestForm"
+               data-toggle="dropdown"><?= e(trans('waka.programer::campagne.send_test')) ?>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="javascript:;"
+               role="menuitem"
+               tabindex="-1"
+               data-control="popup"
+               data-handler="onLoadPreviewMail"
+               data-toggle="dropdown"><?= e(trans('waka.programer::campagne.show')) ?>
+            </a>
+        </li>
+    </ul>
+</div>

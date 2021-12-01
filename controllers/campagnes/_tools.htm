@@ -1,0 +1,30 @@
+<div class="dropdown dropup">
+    <a href="#"
+       data-toggle="dropdown"
+       class="btn btn-secondary oc-icon-wrench"><?= e(trans('waka.programer::campagne.btn_tools')) ?>
+    </a>
+    <ul class="dropdown-menu"
+        role="menu"
+        data-dropdown-title="<?= e(trans('waka.programer::campagne.test')) ?>">
+        <li role="presentation">
+            <a href="javascript:;"
+               role="menuitem"
+               tabindex="-1"
+               data-request-data="redirect:0,productorId:'<?=$modelId?>'"
+               data-request-confirm="<?= e(trans('waka.programer::campagne.sync_alerte')) ?>"
+               data-request="onReSync"
+               data-toggle="dropdown"><?= e(trans('waka.programer::campagne.sync')) ?>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="javascript:;"
+               role="menuitem"
+               tabindex="-1"
+               data-request-data="modelId:'<?=$modelId?>', modelClass:''<?=$modelClass?>'"
+               data-control="popup"
+               data-handler="onLoadDuplicateForm"
+               data-toggle="dropdown"><?= e(trans('waka.utils::lang.duplicateBehavior.title')) ?>
+            </a>
+        </li>
+    </ul>
+</div>

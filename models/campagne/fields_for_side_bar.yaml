@@ -1,0 +1,48 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+fields:
+    state:
+        label: waka.programer::campagne.state
+        span: auto
+        permissions: [waka.programer.campagne.admin.*]
+        infoType: workflow
+        noUpdate: true
+    name:
+        label: waka.programer::campagne.name
+        span: auto
+        required: true
+        permissions: [waka.programer.campagne.*]
+    slug:
+        label: waka.programer::campagne.slug
+        span: auto
+        required: true
+        permissions: [waka.programer.campagne.*]
+    wakaMail:
+        label: waka.programer::campagne.wakaMail
+        span: auto
+        type: dropdown
+        placeholder: waka.utils::lang.global.placeholder
+        required: true
+        options: listActiveWakaMail
+        permissions: [waka.programer.campagne.*]
+        value: wakaMail.name
+        noUpdate: true
+    nb_use:
+        label: waka.programer::campagne.nb_use
+        span: auto
+        noUpdate: true
+    s_stats:
+        label: waka.programer::campagne.s_stats
+        span: auto
+        infoType: section
+        noUpdate: true
+    nb_targets:
+        label: waka.programer::campagne.nb_targets
+        span: auto
+        noUpdate: true
+    nb_targets_eligible:
+        label: waka.programer::campagne.nb_targets_eligible
+        span: auto
+        noUpdate: true
+

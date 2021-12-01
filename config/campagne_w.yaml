@@ -1,0 +1,152 @@
+campagne:
+    type: state_machine
+    metadata: 
+        name: waka.programer::campagne_w.name 
+        com: waka.programer::campagne_w.com 
+        rulesSets:
+            ready:
+                fields:  
+                    selection_mode: required              
+                messages: waka.programer::campagne_wf_errors
+            programed:
+                fields:  
+                    selection_mode: required              
+                    programation_mode: required              
+                    programation_day: required              
+                    programation_hour: required              
+                messages: waka.programer::campagne_wf_errors
+            default:
+                fields:  
+                messages: waka.programer::campagne_wf_errors
+    marking_store:
+        type: single_state
+        arguments: [state]
+    supports:
+        - \Waka\Programer\Models\Campagne
+    places:
+        brouillon:
+            metadata:
+                label: waka.programer::campagne_w.places.brouillon 
+                icon: icon-pencil
+                must_trans: true
+        init:
+            metadata:
+                label: waka.programer::campagne_w.places.init 
+                icon: icon-pencil
+        pret:
+            metadata:
+                label: waka.programer::campagne_w.places.pret 
+                icon: icon-circle-o
+        encours:
+            metadata:
+                label: waka.programer::campagne_w.places.encours 
+                icon: icon-refresh
+        envoye:
+            metadata:
+                label: waka.programer::campagne_w.places.envoye 
+                icon: icon-check-circle-o
+        prog_active:
+            metadata:
+                label: waka.programer::campagne_w.places.prog_active 
+                icon: icon-history
+        prog_supspended:
+            metadata:
+                label: waka.programer::campagne_w.places.prog_supspended 
+                icon: icon-pause-circle-o
+        prog_encours:
+            metadata:
+                label: waka.programer::campagne_w.places.prog_encours 
+        archive:
+            metadata:
+                label: waka.programer::campagne_w.places.archive 
+                icon: icon-folder
+        abdn:
+            metadata:
+                label: waka.programer::campagne_w.places.abdn 
+                icon: icon-trash
+    initial_places: brouillon  # or set to an array if multiple initial places
+    transitions:
+        brouillon_to_init:
+            metadata: 
+                label: waka.programer::campagne_w.trans.brouillon_to_init 
+                fncs:
+                    syncAfterinit:
+                        type: prod
+                    initSyncBase:
+                        type: trait
+            from: brouillon
+            to: init
+        init_to_pret:
+            metadata: 
+                label: waka.programer::campagne_w.trans.init_to_pret 
+                rulesSet: ready
+                fncs:
+                    checkeady:
+                        type: trait
+            from: init
+            to: pret
+        pret_to_encours:
+            metadata: 
+                label: waka.programer::campagne_w.trans.pret_to_encours 
+                rulesSet: ready
+                fncs:
+                    send:
+                        type: trait
+            from: pret
+            to: encours
+        encours_to_envoye:
+            metadata: 
+                label: waka.programer::campagne_w.trans.encours_to_envoye 
+                rulesSet: ready
+                hidden: true
+            from: encours
+            to: envoye
+        pret_to_prog_active:
+            metadata: 
+                label: waka.programer::campagne_w.trans.pret_to_prog_active 
+                rulesSet: programed
+            from: pret
+            to: prog_active
+        pret_to_abdn:
+            metadata: 
+                label: waka.programer::campagne_w.trans.pret_to_abdn 
+                rulesSet: ready
+            from: pret
+            to: abdn
+        envoye_to_prog_active:
+            metadata: 
+                label: waka.programer::campagne_w.trans.envoye_to_prog_active 
+                rulesSet: ready
+            from: envoye
+            to: prog_active
+        envoye_to_archive:
+            metadata: 
+                label: waka.programer::campagne_w.trans.envoye_to_archive 
+                rulesSet: programed
+            from: envoye
+            to: archive
+        prog_active_to_prog_encours:
+            metadata: 
+                label: waka.programer::campagne_w.trans.prog_active_to_prog_encours 
+                rulesSet: programed
+                hidden: true
+            from: prog_active
+            to: prog_encours
+        prog_active_to_prog_supspended:
+            metadata: 
+                label: waka.programer::campagne_w.trans.prog_active_to_prog_supspended 
+                rulesSet: ready
+            from: prog_active
+            to: prog_supspended
+        prog_supspended_to_prog_active:
+            metadata: 
+                label: waka.programer::campagne_w.trans.prog_supspended_to_prog_active 
+                rulesSet: ready
+            from: prog_supspended
+            to: prog_active
+        prog_supspended_to_archive:
+            metadata: 
+                label: waka.programer::campagne_w.trans.prog_supspended_to_archive 
+                rulesSet: ready
+            from: prog_supspended
+            to: archive

@@ -1,0 +1,175 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+fields:
+    subject:
+        label: waka.programer::campagne.subject
+        span: left
+        permissions: [waka.programer.campagne.admin.*]
+    has_programmation:
+        label: waka.programer::campagne.has_programmation
+        span: right
+        type: switch
+        permissions: [waka.programer.campagne.admin.*]
+tabs:
+    defaultTab: waka.programer::camapgne.tab_edit
+    icons: 
+        waka.programer::camapgne.tab_options: 
+        waka.programer::camapgne.tab_edit: 
+    fields:    
+        rule_asks:
+            span: full
+            type: askbuilder
+            targetClass: Campagne
+            full_access: personne
+            permissions: [waka.programer.campagne.admin.*]
+            tab: waka.programer::campagne.tab_edit
+        rule_fncs:
+            span: full
+            type: fncbuilder
+            targetClass: Campagne
+            full_access: personne
+            permissions: [waka.programer.campagne.admin.*]
+            tab: waka.programer::campagne.tab_edit
+        _s_selection:
+            label: waka.programer::campagne._s_selection
+            span: full
+            type: section
+            tab: waka.programer::campagne.tab_options
+        selection_mode:
+            label: waka.programer::campagne.selection_mode
+            span: left
+            type: dropdown
+            placeholder: waka.utils::lang.global.placeholder
+            options: listSelectionModes
+            permissions: [waka.programer.campagne.admin.*]
+            tab: waka.programer::campagne.tab_options
+        selection_name:
+            label: waka.programer::campagne.selection_name
+            span: right
+            type: dropdown
+            placeholder: waka.utils::lang.global.placeholder
+            dependsOn: selection_mode
+            options: listSelectionNames
+            permissions: [waka.programer.campagne.admin.*]
+            tab: waka.programer::campagne.tab_options
+        tests_ids:
+            label: waka.programer::campagne.tests_ids
+            span: full
+            type: lists
+            dependsOn: [selection_mode,selection_name]
+            permissions: [waka.programer.campagne.admin.*]
+            tab: waka.programer::campagne.tab_options
+        _s_pjs:
+            label: waka.programer::campagne._s_pjs
+            span: full
+            type: section
+            tab: waka.programer::campagne.tab_options
+        pjs:
+            label: waka.programer::campagne.pjs
+            span: full
+            type: pjlist
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_options
+        _s_restriction:
+            label: waka.programer::campagne._s_restriction
+            span: full
+            type: section
+            comment: waka.programer::campagne._s_restriction_com
+            tab: waka.programer::campagne.tab_options
+        is_scope:
+            label: waka.programer::campagne.is_scope
+            span: left
+            type: switch
+            default: false
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_options
+        scopes:
+            label: waka.programer::campagne.scopes
+            span: full
+            type: scopeslist
+            trigger:
+                action: show
+                field: is_scope
+                condition: checked
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_options
+        programation_mode:
+            label: waka.programer::campagne.programation_mode
+            span: left
+            type: dropdown
+            placeholder: waka.utils::lang.global.placeholder
+            options: listProgramationOption
+            trigger:
+                action: show
+                field: has_programmation
+                condition: checked
+            permissions: [waka.programer.campagne.admin.*]
+            tab: waka.programer::campagne.tab_program
+        programation_day:
+            label: waka.programer::campagne.programation_day
+            span: left
+            type: dropdown
+            placeholder: waka.utils::lang.global.placeholder
+            dependsOn: programation_mode
+            options: listDays
+            trigger:
+                action: show
+                field: has_programmation
+                condition: checked
+            permissions: [waka.programer.campagne.admin.*]
+            tab: waka.programer::campagne.tab_program
+        programation_hour:
+            label: waka.programer::campagne.programation_hour
+            span: auto
+            dependsOn: programation_mode
+            default: 7:50
+            trigger:
+                action: show
+                field: has_programmation
+                condition: checked
+            permissions: [waka.programer.campagne.admin.*]
+            tab: waka.programer::campagne.tab_program
+        is_mjml:
+            label: waka.programer::campagne.is_mjml
+            span: left
+            type: switch
+            default: false
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_advanced_edit
+        mjml:
+            label: waka.programer::campagne.mjml
+            span: full
+            type: codeeditor
+            language: xml
+            size: giant
+            trigger:
+                action: show
+                field: is_mjml
+                condition: checked
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_advanced_edit
+        html:
+            label: waka.programer::campagne.html
+            span: full
+            type: codeeditor
+            size: giant
+            language: html
+            trigger:
+                action: hide
+                field: is_mjml
+                condition: checked
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_advanced_edit
+secondaryTabs:
+    fields:
+        # info:
+        #     type: modelinfo
+        #     mode: secondary
+        #     src: /waka/programer/models/campagne/fields_for_side_bar.yaml
+        infos:
+            span: full
+            type: modelinfo
+            permissions: [waka.programer.campagne.*]
+            tab: waka.programer::campagne.tab_infos
+            src: waka/programer/models/campagne/fields_for_side_bar.yaml

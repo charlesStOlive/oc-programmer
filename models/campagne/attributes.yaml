@@ -1,0 +1,21 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+icon: icon-info
+attributes:
+    state:
+        label: waka.programer::campagne.state
+    name:
+        label: waka.programer::campagne.name
+    slug:
+        label: waka.programer::campagne.slug
+    nb_use:
+        label: waka.programer::campagne.nb_use
+    nb_targets:
+        label: waka.programer::campagne.nb_targets
+    nb_targets_eligible:
+        label: waka.programer::campagne.nb_targets_eligible
+    updated_at:
+        label: waka.utils::lang.global.updated_at
+        type: date-medium

@@ -1,0 +1,4 @@
+1.0.1: 
+  - 'First version of programer'
+  - create_campagnes_table.php
+  - extend_mailer_table.php

@@ -1,0 +1,6 @@
+modelClass: Waka\Programer\Models\Campagne
+baseMode: buttonList
+
+places:
+  brouillon:
+    mode: buttons 

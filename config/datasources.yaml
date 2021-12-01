@@ -1,0 +1,13 @@
+# ===================================
+#  Config des data source
+# ===================================
+datasource: 
+    campagne:
+        hidden: true
+        label: Campagne
+        class: Waka\Programer\Models\Campagne
+        controller: waka/programmer/campagnes
+        attributes: waka/programmer/models/campagne/attributes.yaml
+        relations:
+            wakaMail:
+                label: Email
