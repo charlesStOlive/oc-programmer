@@ -3,12 +3,12 @@
 # ===================================
 
 columns:
+    has_programmation:
+        label: waka.programer::campagne.has_programmation
+        searchable: true
     state:
         label: waka.programer::campagne.state
         type: workflow
-        searchable: true
-    has_programmation:
-        label: waka.programer::campagne.has_programmation
         searchable: true
     name:
         label: waka.programer::campagne.name

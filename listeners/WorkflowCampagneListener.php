@@ -27,6 +27,14 @@ class WorkflowCampagneListener extends WorkflowListener
      * Permet de bloquer ou pas une transition d'état
      * doit retourner true or false
      */
+    public function isAutoSend($event, $args = null) {
+        $blocked = true;
+        $model = $event->getSubject();
+        if($model->auto_send) {
+            $blocked = false;
+        }
+        return $blocked;
+    }
     // public function authorized($event, $args = null)
     // {
     //     $blocked = false;
@@ -91,13 +99,7 @@ class WorkflowCampagneListener extends WorkflowListener
     }
 
 
-    public function send($event, $args = null)
-    {
-        trace_log('envoyer la campagne');
-        $model = $event->getSubject();
-        $model->launch();
-        
-    }
+    
 
     /**
      * Fonctions de production de doc, pdf, etc.
@@ -108,6 +110,27 @@ class WorkflowCampagneListener extends WorkflowListener
     public function syncAfterinit($model, $args = null)
     {
         $model->syncRelations();
+    }
+
+    public function send($model, $args = null)
+    {
+        trace_log("send args");
+        trace_log($args);
+        $dataForCron = [
+            'productorId' => $model->id,
+            'forceAuto' => $args['forceAuto'] ?? null,
+            
+        ]; 
+        trace_log($dataForCron);
+        try {
+            $job = new \Waka\Programer\Jobs\SendCampagne($dataForCron);
+            $jobManager = \App::make('Waka\Wakajob\Classes\JobManager');
+            $jobManager->dispatch($job, "Envoi d'une campagne");
+            $this->vars['jobId'] = $job->jobId;
+        } catch (Exception $ex) {
+            \Log::error($ex);
+        }
+        
     }
 
     // public function sendNotification($model, $args = null)

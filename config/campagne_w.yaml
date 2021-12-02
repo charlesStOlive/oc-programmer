@@ -41,6 +41,14 @@ campagne:
             metadata:
                 label: waka.programer::campagne_w.places.encours 
                 icon: icon-refresh
+        encourswait:
+            metadata:
+                label: waka.programer::campagne_w.places.encourswait 
+                icon: icon-refresh
+        wait:
+            metadata:
+                label: waka.programer::campagne_w.places.wait 
+                icon: icon-clock
         envoye:
             metadata:
                 label: waka.programer::campagne_w.places.envoye 
@@ -90,12 +98,39 @@ campagne:
                 label: waka.programer::campagne_w.trans.pret_to_encours 
                 rulesSet: ready
                 fncs:
-                    launchProgramTask:
-                        type: prod
                     send:
-                        type: trait
+                        type: prod
+                        args:
+                            forceAuto: send
+                    isAutoSend:
+                        type: gard
             from: pret
             to: encours
+        pret_to_encourswait:
+            metadata: 
+                label: waka.programer::campagne_w.trans.pret_to_encourswait 
+                com: waka.programer::campagne_w.trans.pret_to_encourswait_com 
+                rulesSet: ready
+                fncs:
+                    send:
+                        type: prod
+                        args:
+                            forceAuto: draft
+            from: pret
+            to: encourswait
+        encourswait_to_wait:
+            metadata: 
+                label: waka.programer::campagne_w.trans.encourswait_to_wait 
+                hidden: true
+            from: encourswait
+            to: wait
+        wait_to_envoye:
+            metadata: 
+                label: waka.programer::campagne_w.trans.wait_to_envoye 
+                com: waka.programer::campagne_w.trans.wait_to_envoye_com 
+                rulesSet: ready
+            from: wait
+            to: envoye
         encours_to_envoye:
             metadata: 
                 label: waka.programer::campagne_w.trans.encours_to_envoye 

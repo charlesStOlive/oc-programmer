@@ -88,15 +88,21 @@ class SendCampagne implements WakajobQueueJob
         /**
          * travail preparatoire sur les donnes
          */
+        
+
         $productorId = $this->data['productorId'];
+        // Variable envoyé par le workflow force ou non le draft. 
+        $forceAuto = $this->data['forceAuto'] ?? null;
+        //
         $campagneCreator = CampagneCreator::find($productorId);
-        $dataSourceCode = $campagneCreator->getProductor()->data_source;
+        $campagneModel = $campagneCreator->getProductor();
+        $dataSourceCode = $campagneModel->data_source;
         $ds = \DataSources::find($dataSourceCode);
 
         //Travail sur les données //finalquery retourne une requete 
         $targets  = $campagneCreator->getProductor()->getEligibles();
         
-        trace_log(get_class($targets));
+        //trace_log(get_class($targets));
         /**
          * We initialize database job. It has been assigned ID on dispatching,
          * so we pass it together with number of all elements to proceed (max_progress)
@@ -111,7 +117,7 @@ class SendCampagne implements WakajobQueueJob
         
         $targetsChuncked = $targets->get(['id'])->chunk($this->chunk);
 
-        trace_log($targetsChuncked->toArray());
+        //trace_log($targetsChuncked->toArray());
         
         try {
             foreach ($targetsChuncked as $chunk) {
@@ -140,8 +146,8 @@ class SendCampagne implements WakajobQueueJob
                     ];
                     //trace_log($datasEmail);
                     
-                    
-                    $myCampain->renderMail($datasEmail);
+                    //trace_log(" forceAuto ".$forceAuto);
+                    $myCampain->renderMail($datasEmail, $forceAuto);
                     ++$send;
                     /**
                      * FIN TRAITEMENT **************
@@ -150,11 +156,24 @@ class SendCampagne implements WakajobQueueJob
                 $loop += $this->chunk;
             }
             $jobManager->updateJobState($this->jobId, $loop);
+            if($campagneModel->workflow_can('encourswait_to_wait')) {
+                $campagneModel->workflow_apply('encourswait_to_wait');
+                $campagneModel->save();
+
+
+            };
+            if($campagneModel->workflow_can('encours_to_envoye')) {
+                $campagneModel->workflow_apply('encours_to_envoye');
+                $campagneModel->save();
+            };
+
+
             $jobManager->completeJob(
                 $this->jobId,
                 [
                 'Message' => $targets->count().' '. \Lang::get('waka.mailer::wakamail.job_title'),
                 'waka.mailer::wakamail.job_send' => $send,
+                'waka.mailer::wakamail.transition_ok' => $send,
                 'waka.mailer::wakamail.job_scoped' => $scopeError,
                 'waka.mailer::wakamail.job_skipped' => $skipped,
                 ]
@@ -166,3 +185,4 @@ class SendCampagne implements WakajobQueueJob
         }
     }
 }
+

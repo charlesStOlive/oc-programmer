@@ -68,9 +68,9 @@ class Campagne extends Model
      * @var array Attributes to be cast to JSON
      */
     protected $jsonable = [
+        'scopes',
         'tests_ids',
         'pjs',
-        'scopes',
     ];
 
     /**
@@ -415,6 +415,12 @@ class Campagne extends Model
         $this->scopes = $originalMail->scopes;
         $this->use_key = $originalMail->use_key;
         $this->key_duration = $originalMail->key_duration;
+        $this->has_sender = $originalMail->has_sender;
+        $this->sender = $originalMail->sender;
+        $this->reply_to = $originalMail->reply_to;
+        $this->has_log = $originalMail->has_log;
+        $this->open_log = $originalMail->open_log;
+        $this->click_log = $originalMail->click_log;
     }
     
     public function syncRelations() {
