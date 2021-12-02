@@ -96,8 +96,6 @@ class SendCampagne implements WakajobQueueJob
         //
         $campagneCreator = CampagneCreator::find($productorId);
         $campagneModel = $campagneCreator->getProductor();
-        $dataSourceCode = $campagneModel->data_source;
-        $ds = \DataSources::find($dataSourceCode);
 
         //Travail sur les données //finalquery retourne une requete 
         $targets  = $campagneCreator->getProductor()->getEligibles();
@@ -134,8 +132,11 @@ class SendCampagne implements WakajobQueueJob
                     //trace_log("DEBUT TRAITEMENT **************");
                     $myCampain = CampagneCreator::find($productorId);
                     $myCampain->setModelId($target->id);
-                    
-                    $emails = $ds->getContact('to', $target->id);
+
+                    $emails = $myCampain->ds->getContact('to');
+
+                    trace_log($emails);
+
                     if (!$emails) {
                         ++$skipped;
                         continue;
