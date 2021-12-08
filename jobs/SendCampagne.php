@@ -135,7 +135,7 @@ class SendCampagne implements WakajobQueueJob
 
                     $emails = $myCampain->ds->getContact('to');
 
-                    trace_log($emails);
+                    //trace_log($emails);
 
                     if (!$emails) {
                         ++$skipped;

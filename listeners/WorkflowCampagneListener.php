@@ -114,14 +114,14 @@ class WorkflowCampagneListener extends WorkflowListener
 
     public function send($model, $args = null)
     {
-        trace_log("send args");
-        trace_log($args);
+        //trace_log("send args");
+        //trace_log($args);
         $dataForCron = [
             'productorId' => $model->id,
             'forceAuto' => $args['forceAuto'] ?? null,
             
         ]; 
-        trace_log($dataForCron);
+        //trace_log($dataForCron);
         try {
             $job = new \Waka\Programer\Jobs\SendCampagne($dataForCron);
             $jobManager = \App::make('Waka\Wakajob\Classes\JobManager');
