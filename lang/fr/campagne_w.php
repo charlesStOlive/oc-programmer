@@ -24,6 +24,7 @@ return [
         'pret_to_encourswait' => 'Envoyer campagne (manuel)',
         'encourswait_to_wait' => 'En préparation',
         'wait_to_envoye' => 'Campagne envoyée (manuel)',
+        'wait_to_pret' => 'Annuler la boite d&#039;envoie',
         'encours_to_envoye' => 'Campagne envoyée (auto)',
         'pret_to_prog_active' => 'Mettre en programmation',
         'pret_to_abdn' => 'Abandonner',

@@ -7,12 +7,14 @@ use Waka\Programer\Models\Campagne;
 class CampagneCreator extends MailCreator
 {
     public static $productor;
+    public static $maileable_type;
     public $ds;
     public $modelId = null;
     private $isTwigStarted;
     public $manualData = [];
     public $implement = [];
     public $askResponse = [];
+    
 
     public static function find($mail_id, $slug = false)
     {
@@ -35,4 +37,9 @@ class CampagneCreator extends MailCreator
     {
         return self::$productor;
     }
+    public static function getProductorClass()
+    {
+        return get_class(self::$productor);
+    }
+    
 }

@@ -95,6 +95,14 @@ class WorkflowCampagneListener extends WorkflowListener
         if(!$model->nbTargets) {
             throw new \ValidationException(['selection_mode' => 'Auncune cible trouvée, verifiez votre mode de sélection']);
         }
+    } 
+
+    public function removeSendBox($event, $args = null)
+    {
+       //trace_log('remove sendbox');
+        $model = $event->getSubject();
+       //trace_log($model->sendBoxs()->lists('name', 'id'));
+        $model->sendBoxs()->delete();
     }
 
 

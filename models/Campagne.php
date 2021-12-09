@@ -129,6 +129,10 @@ class Campagne extends Model
             'name' => 'sendeable',
             'delete' => true
         ],
+        'sendBoxs' => [
+            'Waka\Mailer\Models\SendBox',
+            'name' => 'maileable'
+        ],
     ];
     public $attachOne = [
     ];

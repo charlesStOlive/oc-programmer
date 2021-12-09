@@ -77,6 +77,7 @@ campagne:
         brouillon_to_init:
             metadata: 
                 label: waka.programer::campagne_w.trans.brouillon_to_init 
+                redirect: "refresh:1"
                 fncs:
                     syncAfterinit:
                         type: prod
@@ -88,6 +89,7 @@ campagne:
             metadata: 
                 label: waka.programer::campagne_w.trans.init_to_pret 
                 rulesSet: ready
+                redirect: "redirect:1"
                 fncs:
                     checkReady:
                         type: trait
@@ -96,12 +98,14 @@ campagne:
         pret_to_init:
             metadata: 
                 label: waka.programer::campagne_w.trans.pret_to_init 
+                redirect: "redirect:1"
             from: pret
             to: init
         pret_to_encours:
             metadata: 
                 label: waka.programer::campagne_w.trans.pret_to_encours 
                 rulesSet: ready
+                redirect: "close:1"
                 fncs:
                     send:
                         type: prod
@@ -116,6 +120,7 @@ campagne:
                 label: waka.programer::campagne_w.trans.pret_to_encourswait 
                 com: waka.programer::campagne_w.trans.pret_to_encourswait_com 
                 rulesSet: ready
+                redirect: "close:1"
                 fncs:
                     send:
                         type: prod
@@ -134,25 +139,39 @@ campagne:
                 label: waka.programer::campagne_w.trans.wait_to_envoye 
                 com: waka.programer::campagne_w.trans.wait_to_envoye_com 
                 rulesSet: ready
+                redirect: "redirect:1"
             from: wait
             to: envoye
+        wait_to_pret:
+            metadata: 
+                label: waka.programer::campagne_w.trans.wait_to_pret 
+                rulesSet: ready
+                redirect: "redirect:1"
+                fncs:
+                    removeSendBox:
+                        type: trait
+            from: wait
+            to: pret
         encours_to_envoye:
             metadata: 
                 label: waka.programer::campagne_w.trans.encours_to_envoye 
                 rulesSet: ready
                 hidden: true
+                redirect: "redirect:1"
             from: encours
             to: envoye
         pret_to_prog_active:
             metadata: 
                 label: waka.programer::campagne_w.trans.pret_to_prog_active 
                 rulesSet: programed
+                redirect: "redirect:1"
             from: pret
             to: prog_active
         pret_to_abdn:
             metadata: 
                 label: waka.programer::campagne_w.trans.pret_to_abdn 
                 rulesSet: ready
+                redirect: "redirect:1"
             from: pret
             to: abdn
         envoye_to_prog_active:
