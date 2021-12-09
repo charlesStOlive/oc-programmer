@@ -25,6 +25,7 @@ return [
     'is_scope' => 'À des restrictions ?',
     'key_duration' => 'Durée de la clef',
     'layout' => 'Template',
+    'lp' => 'Landing Page',
     'mjml' => 'Code MJML',
     'mjml_html' => 'HTML MJML',
     'name' => 'Nom campagne',

@@ -150,6 +150,15 @@ tabs:
                 condition: checked
             permissions: [waka.programer.campagne.admin.super]
             tab: waka.programer::campagne.tab_options
+        lp:
+            label: waka.programer::campagne.lp
+            span: auto
+            trigger:
+                action: show
+                field: use_key
+                condition: checked
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_options
         s_log:
             label: waka.programer::campagne.s_log
             span: auto

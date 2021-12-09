@@ -89,13 +89,12 @@ class WorkflowCampagneListener extends WorkflowListener
 
         $model->syncBase();
     }
-    public function checkeady($event, $args = null)
+    public function checkReady($event, $args = null)
     {
         $model = $event->getSubject();
         if(!$model->nbTargets) {
-            throw new \ValidationExeption(['selection_mode' => 'Auncune cible trouvée']);
+            throw new \ValidationException(['selection_mode' => 'Auncune cible trouvée, verifiez votre mode de sélection']);
         }
-        
     }
 
 

@@ -2,3 +2,6 @@
   - 'First version of programer'
   - create_campagnes_table.php
   - extend_mailer_table.php
+1.1.1: 
+  - 'Ajout de la landing page'
+  - create_campagnes_table_u111.php

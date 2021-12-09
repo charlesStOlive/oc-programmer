@@ -19,6 +19,7 @@ return [
     'trans' => [
         'brouillon_to_init' => 'Initialisation',
         'init_to_pret' => 'Campagne prête',
+        'pret_to_init' => 'Retour initialisation',
         'pret_to_encours' => 'Envoyer campagne (auto)',
         'pret_to_encourswait' => 'Envoyer campagne (manuel)',
         'encourswait_to_wait' => 'En préparation',
