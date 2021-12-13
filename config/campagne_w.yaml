@@ -77,7 +77,6 @@ campagne:
         brouillon_to_init:
             metadata: 
                 label: waka.programer::campagne_w.trans.brouillon_to_init 
-                redirect: "refresh:1"
                 fncs:
                     syncAfterinit:
                         type: prod

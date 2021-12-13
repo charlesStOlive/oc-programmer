@@ -134,7 +134,7 @@ class WorkflowCampagneListener extends WorkflowListener
             $jobManager = \App::make('Waka\Wakajob\Classes\JobManager');
             $jobManager->dispatch($job, "Envoi d'une campagne");
             $this->vars['jobId'] = $job->jobId;
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             \Log::error($ex);
         }
         

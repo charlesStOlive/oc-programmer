@@ -71,8 +71,14 @@ class Campagnes extends Controller
     }
 
     public function onLaunchCron() {
+        $dataForCron = [
+            'productorId' =>  $this->params[0],
+            'forceAuto' => $args['forceAuto'] ?? null,
+            
+        ]; 
+        //trace_log($dataForCron);
         try {
-            $job = new \Waka\Programer\Jobs\SendCampagne(['productorId' => $this->params[0]]);
+            $job = new \Waka\Programer\Jobs\CreatePdf($dataForCron);
             $jobManager = \App::make('Waka\Wakajob\Classes\JobManager');
             $jobManager->dispatch($job, "Envoi d'une campagne");
             $this->vars['jobId'] = $job->jobId;
