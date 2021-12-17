@@ -426,6 +426,7 @@ class Campagne extends Model
         $this->open_log = $originalMail->open_log;
         $this->click_log = $originalMail->click_log;
         $this->lp = $originalMail->lp;
+        $this->is_embed = $originalMail->is_embed;
     }
     
     public function syncRelations() {

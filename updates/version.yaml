@@ -5,3 +5,6 @@
 1.1.1: 
   - 'Ajout de la landing page'
   - create_campagnes_table_u111.php
+1.1.2: 
+  - 'Ajout de is_embed'
+  - create_campagnes_table_u112.php

@@ -69,8 +69,15 @@ tabs:
             tab: waka.programer::campagne.tab_options
         auto_send:
             label: waka.programer::campagne.auto_send
-            span: full
+            span: left
             type: switch
+            permissions: [waka.programer.campagne.admin.super]
+            tab: waka.programer::campagne.tab_options
+        is_embed:
+            label: waka.programer::campagne.is_embed
+            span: right
+            type: switch
+            default: false
             permissions: [waka.programer.campagne.admin.super]
             tab: waka.programer::campagne.tab_options
         _s_selection:

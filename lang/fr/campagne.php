@@ -21,6 +21,7 @@ return [
     'has_sender_com' => 'sinon l\'adresse par défaut sera utilisée',
     'html' => 'Éditeur',
     'is_campagner' => 'Autorisé pour les  campagnes',
+    'is_embed' => 'Embarquer les images',
     'is_mjml' => 'En MJML ?',
     'is_scope' => 'À des restrictions ?',
     'key_duration' => 'Durée de la clef',
