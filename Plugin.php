@@ -45,6 +45,12 @@ class Plugin extends PluginBase
 
     }
 
+    public function registerWorkflows() {
+        return [
+            '/waka/programer/config/campagne_w.yaml',
+        ];
+    }
+
     /**
      * Boot method, called right before the request route.
      *
