@@ -2,8 +2,7 @@
 #  Btn  Behavior Config
 # ===================================
 
-Description: >
-    //startKeep/
+
 modelClass: Waka\Programer\Models\Campagne
 
 workflow: 
@@ -61,8 +60,7 @@ action_bar:
             url: $/waka/programer/controllers/campagnes/_tools.htm
         tests:
             url: $/waka/programer/controllers/campagnes/_tests.htm
-Description: >
-    //endKeep/
+
 
 
 #     ##### SAUVEGARDE PURE ########

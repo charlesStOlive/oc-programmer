@@ -20,7 +20,7 @@ campagne:
                 messages: waka.programer::campagne_wf_errors
     marking_store:
         type: single_state
-        arguments: [state]
+        property: state
     supports:
         - \Waka\Programer\Models\Campagne
     places:
